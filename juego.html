@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 En Raya</title>
+  <link rel="stylesheet" type="text/css" href="./estilos.css">
+  <style>
+    /* Estilos CSS para la caja del nombre */
+    .nombre-caja {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #fff;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juego.html">Juego 3 en raya</a></li>
+        <li><a href="soldadito.html">XML</a></li>
+        <li><a href="ajustes.html">Ajustes</a></li>
+        <li><a href="#" onclick="mostrarInformacion()">Más información</a></li>
+        <li><a href="https://40588906.servicio-online.net/wordpress/">WEB 220CV</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <button id="mode-switch">Cambiar a modo noche</button>
+    <h1>Bienvenido a mi página</h1>
+  </main>
+
+  <div id="button-container"></div>
+  <div class="game">
+    <div class="board">
+      <div id="0" class="square"></div>
+      <div id="1" class="square"></div>
+      <div id="2" class="square"></div>
+      <div id="3" class="square"></div>
+      <div id="4" class="square"></div>
+      <div id="5" class="square"></div>
+      <div id="6" class="square"></div>
+      <div id="7" class="square"></div>
+      <div id="8" class="square"></div>
+    </div>
+  </div>
+
+  <form id="nombreForm">
+    <label for="nombreUsuario">Ingresa tu nombre:</label>
+    <input type="text" id="nombreUsuario" placeholder="Nombre">
+    <button type="submit">Guardar</button>
+  </form>
+
+  <div id="nombreUsuarioBox" class="nombre-caja"></div>
+ 
+
+  <script>
+// Cargar el nombre almacenado al cargar la página
+window.onload = function() {
+      const nombre = localStorage.getItem('nombre');
+      if (nombre) {
+        mostrarNombre(nombre);
+      }
+      alert('Nombre: Jose Jurado Florido\nCurso: 1ºDAM');
+    };
+    const modeSwitch = document.getElementById('mode-switch');
+    const nombreForm = document.getElementById('nombreForm');
+
+    // Define a function to switch the mode
+    function switchMode() {
+      const body = document.body;
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        modeSwitch.textContent = 'Cambiar a modo noche';
+        sessionStorage.setItem('mode', 'light');
+      } else {
+        body.classList.add('dark');
+        modeSwitch.textContent = 'Cambiar a modo día';
+        sessionStorage.setItem('mode', 'dark');
+      }
+    }
+
+    // Add the event listener
+    modeSwitch.addEventListener('click', switchMode);
+
+    // On page load, check for the saved mode
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedMode = sessionStorage.getItem('mode');
+      if (savedMode) {
+        if (savedMode === 'dark') {
+          document.body.classList.add('dark');
+          modeSwitch.textContent = 'Cambiar a modo día';
+        } else {
+          document.body.classList.remove('dark');
+          modeSwitch.textContent = 'Cambiar a modo noche';
+        }
+      }
+    });
+
+    // Mostrar el nombre guardado en la caja de nombreUsuarioBox
+    const nombreGuardado = sessionStorage.getItem('nombreUsuario');
+    const nombreUsuarioBox = document.getElementById('nombreUsuarioBox');
+    nombreUsuarioBox.textContent = nombreGuardado || 'Sin identificar';
+
+    // Obtener el nombre desde ajustes.html
+    function obtenerNombreDesdeAjustes() {
+      const nombreAjustes = sessionStorage.getItem('nombreUsuario');
+      if (nombreAjustes) {
+        nombreUsuarioBox.textContent = nombreAjustes;
+      }
+    }
+
+    obtenerNombreDesdeAjustes();
+
+    // Event listener para el formulario
+    nombreForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Evita el envío del formulario
+      const nombre = document.getElementById('nombreUsuario').value;
+      sessionStorage.setItem('nombreUsuario', nombre);
+      nombreUsuarioBox.textContent = nombre || 'Sin identificar';
+    });
+  </script>
+</body>
+<script src="./funcionamiento.js"></script>
+
+</html>

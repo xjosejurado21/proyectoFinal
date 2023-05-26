@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajuste</title>
+  <link rel="stylesheet" type="text/css" href="estilos.css">
+</head>
+<body class="light">
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="juego.html">Juego 3 en raya</a></li>
+        <li><a href="soldadito.html">XML</a></li>
+        <li><a href="ajustes.html">Ajustes</a></li>
+        <li><a href="#" onclick="mostrarInformacion()">Más información</a></li>
+        <li><a href="https://40588906.servicio-online.net/wordpress/">WEB 220CV</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Bienvenido a mi página</h1>
+  </main>
+
+  <button id="mode-switch">Cambiar a modo noche</button>
+  
+  <div id="cambiarNombreContainer">
+    <h2>Cambiar nombre</h2>
+    <input type="text" id="nuevoNombreInput" placeholder="Nuevo nombre">
+    <button onclick="guardarNombre()">Guardar</button>
+    <div id="nombreCaja"></div>
+  </div>
+  
+  <section>
+    <h2>LocalStorage</h2>
+    <p>Introduce un valor para almacenar en el LocalStorage:</p>
+    <input type="text" id="localInput">
+    <button id="localButton">Guardar</button>
+    <p>El valor almacenado en LocalStorage es: <span id="localValue"></span></p>
+  </section>
+
+  <section>
+    <h2>SessionStorage</h2>
+    <p>Introduce un valor para almacenar en el SessionStorage:</p>
+    <input type="text" id="sessionInput">
+    <button id="sessionButton">Guardar</button>
+    <p>El valor almacenado en SessionStorage es: <span id="sessionValue"></span></p>
+  </section>
+
+
+
+  <script>
+
+
+
+    // Cambiar modo
+    const modeSwitch = document.getElementById('mode-switch');
+
+    function switchMode() {
+      const body = document.body;
+      if (body.classList.contains('dark')) {
+        body.classList.remove('dark');
+        modeSwitch.innerHTML = 'Cambiar a modo noche';
+        sessionStorage.setItem('theme', ''); // Se cambió localStorage a sessionStorage
+      } else {
+        body.classList.add('dark');
+        modeSwitch.innerHTML = 'Cambiar a modo día';
+        sessionStorage.setItem('theme', 'dark'); // Se cambió localStorage a sessionStorage
+      }
+    }
+
+    modeSwitch.addEventListener('click', switchMode);
+
+    // Cargar el tema almacenado al cargar la página
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = sessionStorage.getItem('theme'); // Se cambió localStorage a sessionStorage
+      if (savedTheme) {
+        document.body.className = savedTheme;
+        modeSwitch.innerHTML = savedTheme === 'dark' ? 'Cambiar a modo día' : 'Cambiar a modo noche';
+      }
+    });
+
+    // Guardar nombre
+    function guardarNombre() {
+      const nuevoNombre = document.getElementById('nuevoNombreInput').value;
+      localStorage.setItem('nombre', nuevoNombre);
+      mostrarNombre(nuevoNombre);
+    }
+
+    // Mostrar nombre almacenado
+    function mostrarNombre(nombre) {
+      const nombreCaja = document.getElementById('nombreCaja');
+      nombreCaja.innerHTML = `Nombre: ${nombre}`;
+    }
+
+    // Detectar cambios en localStorage
+    window.addEventListener('storage', function(event) {
+      if (event.key === 'nombre') {
+        const nuevoNombre = event.newValue;
+        mostrarNombre(nuevoNombre);
+      }
+    });
+
+    // Cargar el nombre almacenado al cargar la página
+    window.onload = function() {
+      const nombre = localStorage.getItem('nombre');
+      if (nombre) {
+        mostrarNombre(nombre);
+      }
+      alert('Nombre: Jose Jurado Florido\nCurso: 1ºDAM');
+    };
+
+    // LocalStorage
+    const localInput = document.getElementById('localInput');
+    const localButton = document.getElementById('localButton');
+    const localValue = document.getElementById('localValue');
+
+    localButton.addEventListener('click', () => {
+      localStorage.setItem('localData', localInput.value);
+      localValue.textContent = localStorage.getItem('localData');
+    });
+
+    localValue.textContent = localStorage.getItem('localData');
+
+    // SessionStorage
+    const sessionInput = document.getElementById('sessionInput');
+    const sessionButton = document.getElementById('sessionButton');
+    const sessionValue = document.getElementById('sessionValue');
+
+    sessionButton.addEventListener('click', () => {
+      sessionStorage.setItem('sessionData', sessionInput.value);
+      sessionValue.textContent = sessionStorage.getItem('sessionData');
+    });
+
+    sessionValue.textContent = sessionStorage.getItem('sessionData');
+  </script>
+</body>
+<script src="./funcionamiento.js"></script>
+</html>
+
+

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" type="text/css" href="estilos.css">
+    <style>
+        /* Estilos CSS para la ventana modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 300px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="nombreUsuarioBox" class="nombre-box"></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="juego.html">Juego 3 en raya</a></li>
+                <li><a href="soldadito.html">XML</a></li>
+                <li><a href="ajustes.html">Ajustes</a></li>
+                <li><a href="#" onclick="mostrarInformacion()">Más información</a></li>
+                <li><a href="https://40588906.servicio-online.net/wordpress/">WEB 220CV</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Ventana modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <h2>Ingresa tu nombre</h2>
+            <form id="nombreForm">
+                <input type="text" id="nombreUsuario" placeholder="Nombre">
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
+    <!-- Script JavaScript -->
+    <script>
+        // Leer mensaje del usuario
+        var mensaje = prompt("Cuantas Cervezas te has bebido killo:");
+
+        // Mostrar mensaje en la consola
+        console.log("Mensaje ingresado: " + mensaje);
+    </script>
+    <script>
+        // Cargar el nombre almacenado al cargar la página
+        window.onload = function() {
+            const nombre = localStorage.getItem('nombreUsuario');
+            if (nombre) {
+                mostrarNombre(nombre);
+            }
+            alert('Nombre: Jose Jurado Florido\nCurso: 1ºDAM');
+        };
+
+        // Función para mostrar la ventana modal
+        function mostrarModal() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "block";
+        }
+
+        // Función para guardar el nombre ingresado y cerrar la ventana modal
+        function guardarNombre(event) {
+            event.preventDefault(); // Evitar el envío del formulario
+            var nombre = document.getElementById("nombreUsuario").value;
+            localStorage.setItem("nombreUsuario", nombre); // Almacena el nombre en el almacenamiento local
+            var nombreUsuarioBox = document.getElementById("nombreUsuarioBox");
+            nombreUsuarioBox.textContent = nombre ? nombre : "Sin identificar";
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        // Verificar si el nombre ya está guardado en el almacenamiento local
+        var nombreGuardado = localStorage.getItem("nombreUsuario");
+        if (!nombreGuardado) {
+            mostrarModal(); // Si no hay nombre guardado, mostrar la ventana modal
+        }
+
+        // Mostrar el nombre guardado en la caja de nombreUsuarioBox
+        var nombreUsuarioBox = document.getElementById("nombreUsuarioBox");
+        nombreUsuarioBox.textContent = nombreGuardado ? nombreGuardado : "Sin identificar";
+
+        // Obtener el formulario y agregar el evento de envío
+        var nombreForm = document.getElementById("nombreForm");
+        nombreForm.addEventListener("submit", guardarNombre);
+    </script>
+    <script src="funcionamiento.js"></script>
+</body>
+
+</html>

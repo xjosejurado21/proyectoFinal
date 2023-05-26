@@ -1,0 +1,209 @@
+#nombreCaja {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-weight: bold;
+}
+body {
+  background-image: url(boxeo.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.game {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+}
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  background-color: #fff;
+  background-image: url(rink.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 6px solid #000;
+}
+.square {
+  width: 100px;
+  height: 100px;
+  box-sizing: border-box;
+  border: 2px solid #000;
+  font-size: 48px;
+  text-align: center;
+  line-height: 100%;
+  cursor: pointer;
+}
+body {
+  font-family: Arial, sans-serif;
+}
+section {
+  margin-bottom: 20px;
+}
+h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+input {
+  width: 200px;
+  padding: 5px;
+  margin-right: 10px;
+  font-size: 1em;
+}
+p {
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+span {
+  font-weight: bold;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #f8f9fa;
+  padding: 10px 0;
+}
+
+li {
+  margin: 0 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  background-color: #ddd;
+}
+
+body.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f8f8f8;
+  padding: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+main {
+  padding: 20px;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+#mode-switch {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+#cambiarNombreContainer {
+  margin-top: 20px;
+}
+
+#nombreCaja {
+  background-color: #000000;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+section {
+  margin-top: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+button {
+  padding: 5px 10px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 20px;
+}
+#nombreUsuarioBox {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
